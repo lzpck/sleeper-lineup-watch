@@ -1,0 +1,359 @@
+/* Estilos globais com tema Sleeper */
+body {
+  background: #121212;
+  color: #f5f5f5;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Título principal */
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #facc15; /* amarelo vibrante */
+  margin-bottom: 10px;
+}
+
+/* Subtítulos */
+h2, h3 {
+  color: #ddd;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+/* Inputs e selects */
+input, select {
+  background: #1e1e1e;
+  color: #f5f5f5;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 5px;
+  transition: border 0.2s, box-shadow 0.2s;
+  font-family: 'Inter', sans-serif;
+}
+
+input:focus, select:focus {
+  border-color: #facc15;
+  box-shadow: 0 0 5px #facc15;
+  outline: none;
+}
+
+/* Botões */
+button {
+  background: #7c3aed;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #6d28d9;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th {
+  background: #1f2937;
+  color: #facc15;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+tr:hover {
+  background: #1e1e1e;
+}
+
+/* Container principal */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 80px; /* Espaço para o footer fixo */
+}
+
+/* Formulário de busca */
+.search-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-form input {
+  flex: 1;
+  max-width: 300px;
+}
+
+/* Estados de loading e erro */
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #888;
+}
+
+/* Spinner animado */
+.spinner {
+  border: 4px solid #333;
+  border-top: 4px solid #facc15;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Mensagens de erro */
+.error {
+  color: #ff6b6b;
+  background: #1e1e1e;
+  border: 1px solid #ff6b6b;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+/* Mensagem quando não há jogadores */
+.empty {
+  color: #aaa;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* Container dos filtros */
+.filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  border: 1px solid #333;
+}
+
+.filters select {
+  margin: 0;
+  min-width: 150px;
+}
+
+/* Grid de cards responsivo */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* Estilos dos cards */
+.card {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* Título da liga */
+.league-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #facc15;
+  margin-bottom: 8px;
+}
+
+/* Nome do jogador */
+.player-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-right: 6px;
+  font-weight: 500;
+}
+
+.badge-position {
+  background: #374151;
+  color: #fff;
+}
+
+.badge-team {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.badge-status-questionable {
+  background: #facc15;
+  color: #000;
+}
+
+.badge-status-doubtful {
+  background: #fb923c;
+  color: #000;
+}
+
+.badge-status-out {
+  background: #ef4444;
+  color: #fff;
+}
+
+.badge-status-ir {
+  background: #6b7280;
+  color: #fff;
+}
+
+.badge-status-sus, .badge-status-susp {
+  background: #f97316;
+  color: #fff;
+}
+
+.badge-status-pup {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.badge-status-na {
+  background: #9ca3af;
+  color: #000;
+}
+
+.badge-status-dnr {
+  background: #ef4444;
+  color: #fff;
+}
+
+.badge-status-cov {
+  background: #22c55e;
+  color: #000;
+}
+
+.badge-status-nfi-r, .badge-status-nfi-a {
+  background: #0ea5e9;
+  color: #fff;
+}
+
+.badge-status-cel {
+  background: #eab308;
+  color: #000;
+}
+
+/* Estilos da landing page */
+.landing-page {
+  text-align: center;
+  margin-top: 80px;
+  color: #ddd;
+}
+
+.landing-page h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #facc15;
+}
+
+.landing-page p {
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+/* Estilos do footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+  color: #aaa;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 12px;
+  z-index: 1000;
+}
+
+footer a {
+  color: #facc15;
+  text-decoration: none;
+  margin-left: 8px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.pix-box {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #f5f5f5;
+}
+
+.pix-button {
+  background: #7c3aed;
+  border: none;
+  color: #fff;
+  padding: 4px 10px;
+  margin-left: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.pix-button:hover {
+  background: #6d28d9;
+}
+
+/* Layout responsivo do footer */
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+}
