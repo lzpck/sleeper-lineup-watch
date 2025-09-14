@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "cd sleeper-lineup-watch-ui && npm install && npm run build",
+  "buildCommand": "npm run vercel-build",
   "outputDirectory": "sleeper-lineup-watch-ui/dist",
   "rewrites": [
     {
