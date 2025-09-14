@@ -2,7 +2,7 @@
   "name": "sleeper-lineup-watch",
   "version": "1.0.0",
   "description": "Backend para monitoramento de lineups do Sleeper",
-  "main": "dist/server.js",
+
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
