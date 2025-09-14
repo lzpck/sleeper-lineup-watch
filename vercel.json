@@ -1,15 +1,12 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "sleeper-lineup-watch-ui/dist/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
+  "buildCommand": "cd sleeper-lineup-watch-ui && npm run build",
+  "outputDirectory": "sleeper-lineup-watch-ui/dist",
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 30
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
@@ -24,12 +21,8 @@
       "dest": "/api/index.js"
     },
     {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico))",
-      "dest": "/sleeper-lineup-watch-ui/dist/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/sleeper-lineup-watch-ui/dist/index.html"
+      "dest": "/index.html"
     }
   ]
 }
