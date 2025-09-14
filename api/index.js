@@ -1,9 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
 
-// Cria aplicação Express
+// Cria aplicação Express apenas para API
 const app = express();
 
 // Middlewares
@@ -11,35 +9,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve arquivos estáticos do frontend
-let frontendPath = path.join(__dirname, '../sleeper-lineup-watch-ui/dist');
-
-// Verifica caminhos alternativos
-if (!fs.existsSync(frontendPath)) {
-  const alternativePaths = [
-    path.join(process.cwd(), 'sleeper-lineup-watch-ui/dist'),
-    path.join(process.cwd(), 'dist'),
-    path.join(__dirname, 'dist')
-  ];
-  
-  for (const altPath of alternativePaths) {
-    if (fs.existsSync(altPath)) {
-      frontendPath = altPath;
-      break;
-    }
-  }
-}
-
-console.log('Frontend path:', frontendPath);
-app.use(express.static(frontendPath));
-
 // Rotas da API
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    service: 'Sleeper Lineup Watch API'
+  });
 });
 
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+app.get('/api/sleeper', (req, res) => {
+  res.json({ 
+    message: 'Sleeper API endpoint',
+    status: 'available',
+    timestamp: new Date().toISOString()
+  });
 });
 
 app.get('/api', (req, res) => {
@@ -50,17 +34,27 @@ app.get('/api', (req, res) => {
     endpoints: {
       health: '/api/health',
       sleeper: '/api/sleeper'
-    }
+    },
+    timestamp: new Date().toISOString()
   });
 });
 
-// Fallback para SPA
-app.get('*', (req, res) => {
-  if (req.path.startsWith('/api/')) {
-    return res.status(404).json({ error: 'API endpoint not found' });
-  }
-  
-  res.sendFile(path.join(frontendPath, 'index.html'));
+// Rota de compatibilidade
+app.get('/health', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    timestamp: new Date().toISOString(),
+    service: 'Sleeper Lineup Watch API'
+  });
+});
+
+// Middleware para rotas não encontradas da API
+app.use('/api/*', (req, res) => {
+  res.status(404).json({ 
+    error: 'API endpoint not found',
+    path: req.path,
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Exporta para Vercel
