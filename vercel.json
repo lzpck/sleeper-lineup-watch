@@ -1,5 +1,13 @@
 {
   "version": 2,
+  "buildCommand": "cd sleeper-lineup-watch-ui && npm install && npm run build",
+  "outputDirectory": "sleeper-lineup-watch-ui/dist",
+  "functions": {
+    "api/index.js": {
+      "runtime": "@vercel/node",
+      "maxDuration": 30
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
