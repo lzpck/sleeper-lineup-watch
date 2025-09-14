@@ -57,5 +57,10 @@ app.use('/api/*', (req, res) => {
   });
 });
 
-// Exporta para Vercel
-module.exports = app;
+// Função handler para Vercel
+module.exports = (req, res) => {
+  return app(req, res);
+};
+
+// Exporta também a aplicação para desenvolvimento local
+module.exports.app = app;
