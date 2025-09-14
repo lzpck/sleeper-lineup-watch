@@ -1,18 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "sleeper-lineup-watch-ui/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "api/index.js",
-      "use": "@vercel/node"
+  "functions": {
+    "api/index.js": {
+      "maxDuration": 30
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
@@ -27,12 +19,8 @@
       "dest": "/api/index.js"
     },
     {
-      "src": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
-      "dest": "/sleeper-lineup-watch-ui/dist/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/sleeper-lineup-watch-ui/dist/index.html"
+      "dest": "/api/index.js"
     }
   ]
 }
