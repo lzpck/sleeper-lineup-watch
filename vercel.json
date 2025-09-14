@@ -4,7 +4,7 @@
   "outputDirectory": "sleeper-lineup-watch-ui/dist",
   "functions": {
     "api/index.js": {
-      "runtime": "nodejs18.x",
+      "runtime": "@vercel/node@18.x",
       "maxDuration": 30
     }
   },
