@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "cd sleeper-lineup-watch-ui && npm install && npm run build",
-  "outputDirectory": "sleeper-lineup-watch-ui/dist",
   "rewrites": [
     {
       "source": "/api/(.*)",
