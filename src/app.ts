@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { healthRouter } from './routes/health';
 import { sleeperRouter } from './routes/sleeper';
 import { errorHandler } from './middleware/error';
@@ -16,7 +17,27 @@ app.use(express.json()); // Parser para JSON no body das requisições
 app.use(express.urlencoded({ extended: true })); // Parser para dados de formulário
 
 // Serve arquivos estáticos do frontend React
-const frontendPath = path.join(__dirname, '../sleeper-lineup-watch-ui/dist');
+// Na Vercel, verifica se existe a pasta dist do frontend
+let frontendPath = path.join(__dirname, '../sleeper-lineup-watch-ui/dist');
+
+// Fallback para desenvolvimento local ou estrutura diferente
+if (!fs.existsSync(frontendPath)) {
+  // Tenta outros caminhos possíveis
+  const alternativePaths = [
+    path.join(process.cwd(), 'sleeper-lineup-watch-ui/dist'),
+    path.join(process.cwd(), 'dist'),
+    path.join(__dirname, 'dist')
+  ];
+  
+  for (const altPath of alternativePaths) {
+    if (fs.existsSync(altPath)) {
+      frontendPath = altPath;
+      break;
+    }
+  }
+}
+
+console.log('Frontend path:', frontendPath);
 app.use(express.static(frontendPath));
 
 // Rotas da API
