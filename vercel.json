@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "outputDirectory": "sleeper-lineup-watch-ui/dist",
   "rewrites": [
     {
       "source": "/api/(.*)",
